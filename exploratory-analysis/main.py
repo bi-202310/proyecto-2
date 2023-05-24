@@ -6,6 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+import seaborn as sns
+
 
 # Load the data
 df1 = pd.read_csv(os.path.join('data', 'Datos_proyecto_II_BI_2017.csv'), encoding= 'latin1')
@@ -28,29 +30,41 @@ df2 = df2.iloc[:, 1:]
 # Combine the dataframes into one where the columns are the same
 df = pd.concat([df1, df2], axis=0, ignore_index=True)
 
-# # Lets see the data
-# print(df.head())
-# print("--------------------")
+# Take only these columns: 
+# - NVCBP8A: La vivienda presenta humedades en el techo o en paredes?
+# - NVCBP8B: La vivienda presenta goteras en el techo?
+# - NVCBP8C: La vivienda presenta grietas en el techo y paredes?
+# - NVCBP8D: La vivienda presenta fallas en las tuberías, cañerías o
+# desagües?
+# - NVCBP8E: La vivienda presenta grietas en el piso?
+# - NVCBP8F: La vivienda presenta cielorrasos o tejas en mal estado?
+# - NVCBP8G: La vivienda presenta escasa ventilación?
+# - NVCBP8H: La vivienda presenta inundación cuando llueve o crece el rio?
+# - NVCBP8I: La vivienda presenta peligro de derrumbe, avalancha o
+# deslizamiento?
+# - NVCBP8J: La vivienda presenta hundimiento del terreno?
+# - NVCBP9: Algún espacio donde está ubicada la vivienda está dedicado a
+# negocios de industria, comercio o servicios?
+# - NVCBP14A: La vivienda está cerca de fábricas o industrias?
+# - NVCBP14B: La vivienda está cerca de basureros o botaderos de basura?
+# - NVCBP14D: La vivienda está cerca de terminales de buses?
+# - NVCBP14H: La vivienda está cerca de líneas de alta tensión o centrales
+# eléctricas?
+# - NVCPB14K: La vivienda está cerca de talleres de mecánica, servitecas o
+# estaciones de gasolina?
+# - NVCBP15D: El sector presenta contaminación del aire?
+# - NPCFP1: Está afiliado a alguna entidad de seguridad social en salud?
+# - NPCFP2: A cuál de los siguientes regímenes de seguridad social en salud
+# está afiliado?
+# - NPCFP14I: Está diagnosticado con asma?
+# - NVCAP99: Fecha Apertura
+# - CODLOCALIDAD: Código de la localidad
 
-# # Lets see the data types
-# print(df.dtypes)
-# print("--------------------")
+df = df[['NVCBP8A', 'NVCBP8B', 'NVCBP8C', 'NVCBP8D', 'NVCBP8E', 'NVCBP8F', 'NVCBP8G', 'NVCBP8H', 'NVCBP8I', 'NVCBP8J', 'NVCBP9', 'NVCBP14A', 'NVCBP14B', 'NVCBP14D', 'NVCBP14H', 'NVCBP15D', 'NPCFP1', 'NPCFP2', 'NPCFP14I', 'NVCAP99', 'CODLOCALIDAD']]
 
-# # Lets see the data shape
-# print(df.shape)
-# print("--------------------")
+print(df)
 
-# # Lets see the data columns
-# print(df.columns)
-# print("--------------------")
-
-# # Lets see the data info
-# print(df.info())
-# print("--------------------")
-
-# # Lets see the data describe
-# print(df.describe())
-# print("--------------------")
-
-# # Lets see the data null values
-# print(df.isnull().sum())
+# show correlaation matrix
+corr = df.corr()
+sns.heatmap(corr, annot=True, cmap=plt.cm.Reds)
+plt.show()

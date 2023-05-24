@@ -30,7 +30,7 @@ df2 = df2.iloc[:, 1:]
 # Combine the dataframes into one where the columns are the same
 df = pd.concat([df1, df2], axis=0, ignore_index=True)
 
-# Take only these columns: 
+# Take only these columns:
 # - NVCBP8A: La vivienda presenta humedades en el techo o en paredes?
 # - NVCBP8B: La vivienda presenta goteras en el techo?
 # - NVCBP8C: La vivienda presenta grietas en el techo y paredes?
@@ -60,11 +60,29 @@ df = pd.concat([df1, df2], axis=0, ignore_index=True)
 # - NVCAP99: Fecha Apertura
 # - CODLOCALIDAD: Código de la localidad
 
-df = df[['NVCBP8A', 'NVCBP8B', 'NVCBP8C', 'NVCBP8D', 'NVCBP8E', 'NVCBP8F', 'NVCBP8G', 'NVCBP8H', 'NVCBP8I', 'NVCBP8J', 'NVCBP9', 'NVCBP14A', 'NVCBP14B', 'NVCBP14D', 'NVCBP14H', 'NVCBP15D', 'NPCFP1', 'NPCFP2', 'NPCFP14I', 'NVCAP99', 'CODLOCALIDAD']]
+cols = ['NVCBP8A', 'NVCBP8B', 'NVCBP8C', 'NVCBP8D', 'NVCBP8E', 'NVCBP8F', 'NVCBP8G', 'NVCBP8H', 'NVCBP8I', 'NVCBP8J', 'NVCBP9', 'NVCBP14A', 'NVCBP14B', 'NVCBP14D', 'NVCBP14H', 'NVCBP15D', 'NPCFP1', 'NPCFP2', 'NPCFP14I', 'CODLOCALIDAD']
+
+df = df[cols]
 
 print(df)
+print(df.describe())
+print(df.dtypes)
 
 # show correlaation matrix
 corr = df.corr()
 sns.heatmap(corr, annot=True, cmap=plt.cm.Reds)
 plt.show()
+
+
+# Show the correlation between the NPCFP14I and the rest of the columns
+# as scatter plots
+for col in cols:
+	if col != 'NPCFP14I':
+		plt.scatter(df[col], df['NPCFP14I'])
+		plt.xlabel(col)
+		plt.ylabel('NPCFP14I')
+		plt.show()
+
+# with a sns pairplot
+#sns.pairplot(df, x_vars=cols, y_vars=['NPCFP14I'], height=5, aspect=.8, kind='reg')
+#plt.show()

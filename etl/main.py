@@ -32,8 +32,8 @@ localidades = {loc["cod_loc"]: loc["geo_point_2d"] for loc in localidades}
 coords = {str(key): (coord["lon"], coord["lat"])
           for key, coord in localidades.items()}
 
-lons = {str(key): coord["lon"] for key, coord in localidades.items()}
-lats = {str(key): coord["lat"] for key, coord in localidades.items()}
+lons = {str(key): str(coord["lon"]) for key, coord in localidades.items()}
+lats = {str(key): str(coord["lat"]) for key, coord in localidades.items()}
 
 # Create a new column with the lon of the localidad
 df["lon"] = df["CODLOCALIDAD"].map(lons)

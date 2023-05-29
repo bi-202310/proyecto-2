@@ -161,10 +161,10 @@ CREATE TABLE SalubridadDim (
 """)
 conn.commit()
 
-# Create a table called UbiacionDim
-cur.execute("DROP TABLE IF EXISTS UbiacionDim CASCADE;")
+# Create a table called UbicacionDim
+cur.execute("DROP TABLE IF EXISTS UbicacionDim CASCADE;")
 cur.execute("""
-CREATE TABLE UbiacionDim (
+CREATE TABLE UbicacionDim (
 	id integer,
     UPZ text,
     localidad text,
@@ -191,8 +191,8 @@ for index, row in df.iterrows():
     # Insert into SalubridadDim
     cur.execute("INSERT INTO SalubridadDim (id, escasaVentilacion, cercaBotaderos, cercaCentralesElectricas) VALUES (%s, %s, %s, %s);",
                 (index, row['NVCBP8G'], row['NVCBP14B'], row['NVCBP14H']))
-    # Insert into UbiacionDim
-    cur.execute("INSERT INTO UbiacionDim (id, UPZ, localidad, lon, lat) VALUES (%s, %s, %s, %s, %s);",
+    # Insert into UbicacionDim
+    cur.execute("INSERT INTO UbicacionDim (id, UPZ, localidad, lon, lat) VALUES (%s, %s, %s, %s, %s);",
                 (index, row['COD_UPZ'], row['CODLOCALIDAD'], row['lon'], row['lat']))
 
 conn.commit()

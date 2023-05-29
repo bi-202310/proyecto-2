@@ -20,21 +20,26 @@ df1 = df1.iloc[:, 1:]
 df2 = df2.iloc[:, 1:]
 df = pd.concat([df1, df2], ignore_index=True)
 
+# Turn CODLOCALIDAD into a string
+df["CODLOCALIDAD"] = df["CODLOCALIDAD"].astype(str)
+
 
 with open(os.path.join('data', 'poblacion-upz-bogota.json')) as f:
     localidades = json.load(f)
 
 # from localidades sabe the cod_loc, and the geo_point_2d in a dict
 localidades = {loc["cod_loc"]: loc["geo_point_2d"] for loc in localidades}
-coords = {key: (coord["lon"], coord["lat"])
+coords = {str(key): (coord["lon"], coord["lat"])
           for key, coord in localidades.items()}
 
-# turn coords into dataframe
-coords = pd.DataFrame.from_dict(coords, orient="index", columns=["lon", "lat"])
+lons = {str(key): coord["lon"] for key, coord in localidades.items()}
+lats = {str(key): coord["lat"] for key, coord in localidades.items()}
 
-# Cross the coords with the UPZ codes in df
-df = df.merge(coords, left_on="COD_UPZ", right_index=True)
+# Create a new column with the lon of the localidad
+df["lon"] = df["CODLOCALIDAD"].map(lons)
 
+# Create a new column with the lat of the localidad
+df["lat"] = df["CODLOCALIDAD"].map(lats)
 
 # Take only these columns:
 # - NVCBP8A: La vivienda presenta humedades en el techo o en paredes?
@@ -72,27 +77,32 @@ all_cols = ['DIRECTORIO', 'DIRECTORIO_HOG', 'DIRECTORIO_PER', 'SECUENCIA', 'SECU
 cols = ['NPCFP14I', 'NPCFP1', 'NVCBP8A', 'NVCBP8B', 'NVCBP8D', 'NVCBP8H', 'NVCBP14A', 'NVCBP14D',
         'NVCBP14K', 'NVCBP15D', 'NVCBP8G', 'NVCBP14B', 'NVCBP14H', 'CODLOCALIDAD', 'COD_UPZ']
 
-print(df[cols].head(5))
+# print(df[cols].head(5))
 
-for col in cols:
-    print(sorted(df[col].unique()))
+# for col in cols:
+#     print(sorted(df[col].unique()))
 
 # Only leave the 1 and 2 values, replace the rest with nan
 for col in cols[:-2]:
     df[col] = df[col].replace(9, np.nan)
 
-print()
-for col in cols:
-    print(sorted(df[col].unique()))
+
+# print()
+# for col in cols:
+#     print(sorted(df[col].unique()))
 
 # If a value is nan replace it for postrgesql null
 for col in cols:
     df[col] = df[col].replace(np.nan, None)
 
+# print(df.shape)
+
 # Turn the 1s into False and 2s into True
 for col in cols[:-2]:
     df[col] = df[col].replace(1, True)
     df[col] = df[col].replace(2, False)
+
+# print(df.shape)
 
 # Open a conncetion to local postgres database with pyscopg2
 conn = psycopg2.connect("dbname=asmacaso user=postgres")

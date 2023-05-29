@@ -1,22 +1,22 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>400</x><y>360</y><w>160</w><h>70</h></coordinates><panel_attributes>PersonaFact
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>540</x><y>400</y><w>160</w><h>70</h></coordinates><panel_attributes>PersonaFact
 --
 - asmatico: BOOLEAN
-- afiliado: VARCHAR(24)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>340</y><w>230</w><h>100</h></coordinates><panel_attributes>HumedadDim
+- afiliado: VARCHAR(24)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>380</y><w>230</w><h>100</h></coordinates><panel_attributes>HumedadDim
 -
 - humedadTechoPared: BOOLEAN
 - goteras: BOOLEAN
 - fallaTuberias: BOOLEAN
 - inundaciones: BOOLEAN
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>540</y><w>250</w><h>90</h></coordinates><panel_attributes>ContaminacionDim
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>580</y><w>250</w><h>90</h></coordinates><panel_attributes>ContaminacionDim
 -
 - cercaAIndustria: BOOLEAN
 - cercaATerminalesTransporte: BOOLEAN
 - cercaATalleresMecanica: BOOLEAN
-- contaminacionEnSector: BOOLEAN</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>350</y><w>250</w><h>80</h></coordinates><panel_attributes>SalubridadDim
+- contaminacionEnSector: BOOLEAN</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>850</x><y>390</y><w>250</w><h>80</h></coordinates><panel_attributes>SalubridadDim
 -
 - ventilacionEscaza: BOOLEAN
 - cercaABasureros: BOOLEAN
-- cercaACentralesElectricas: BOOLEAN</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>380</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>420</y><w>30</w><h>140</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>550</x><y>380</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>170</y><w>160</w><h>60</h></coordinates><panel_attributes>UbicacionDim
+- cercaACentralesElectricas: BOOLEAN</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>420</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>460</y><w>30</w><h>140</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>690</x><y>420</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>210</y><w>160</w><h>60</h></coordinates><panel_attributes>UbicacionDim
 -
 - UPZ: VARCHAR(24)
-- Localidad: VARCHAR(24)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>220</y><w>30</w><h>160</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element></diagram>
+- Localidad: VARCHAR(24)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>260</y><w>30</w><h>160</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element></diagram>
